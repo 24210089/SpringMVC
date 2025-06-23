@@ -14,19 +14,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
     
+
+
+
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/")   
     public String getHomePage(Model model){
-        // Thêm dữ liệu từ service
         String message = userService.handleHello();
         model.addAttribute("message", message);
         
-        return "hello"; // ✅ ĐÚNG - không có .jsp
+        return "hello";
     }
 
     @RequestMapping("/admin/user")
@@ -38,7 +41,8 @@ public class UserController {
     @RequestMapping(value = "/admin/user/create", method=RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit ) {
         System.out.println("run here " + hoidanit);
-        return "hello";
+        this.userService.handleSaveUser(hoidanit);
+        return "home";
     }
     
     
