@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,6 +36,8 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model){
+        List<User> users = this.userService.getAllUsers();
+        model.addAttribute("users", users);  // Đưa dữ liệu vào model
         return "admin/user/table-user";
     }
 
@@ -45,9 +49,8 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method=RequestMethod.POST)
     public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit ) {
-        System.out.println("run here " + hoidanit);
         this.userService.handleSaveUser(hoidanit);
-        return "home";
+        return "redirect:/admin/user";  // Chuyển hướng về trang danh sách
     }
     
     

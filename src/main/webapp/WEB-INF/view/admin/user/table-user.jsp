@@ -20,7 +20,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
         <div class="col-12 mx-auto">
           <div class="d-flex justify-content-between">
             <h3>Table User</h3>
-            <a href="/admin/user/table-user" class="btn btn-primary"
+            <a href="/admin/user/create" class="btn btn-primary"
               >Create new user</a
             >
           </div>
@@ -34,26 +34,18 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Obito</td>
-                <td>Mark</td>
-                <td>
-                  <button class="btn btn-success">View</button>
-                  <button class="btn btn-warning">Update</button>
-                  <button class="btn btn-danger">Delate</button>
-                </td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Tran</td>
-                <td>Tin</td>
-                <td>
-                  <button class="btn btn-success">View</button>
-                  <button class="btn btn-warning">Update</button>
-                  <button class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
+              <c:forEach var="user" items="${users}">
+                <tr>
+                  <th>${user.id}</th>
+                  <td>${user.email}</td>
+                  <td>${user.fullName}</td>
+                  <td>
+                    <button class="btn btn-success">View</button>
+                    <button class="btn btn-warning">Update</button>
+                    <button class="btn btn-danger">Delate</button>
+                  </td>
+                </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>
