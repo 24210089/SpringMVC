@@ -40,8 +40,8 @@ public class UserController {
 
     @GetMapping("/admin/user/{id}")
     public String getUserView(Model model, @PathVariable long id) {
-
-        model.addAttribute("id", id); //truyền qua view
+        User user = this.userService.getUserById(id); // Lấy từ database
+        model.addAttribute("user", user); //truyền qua view
         return "admin/user/show"; // Tạo view mới để hiển thị chi tiết user
     }
 
