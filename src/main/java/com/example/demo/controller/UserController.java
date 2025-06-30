@@ -42,7 +42,15 @@ public class UserController {
     public String getUserView(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id); // Lấy từ database
         model.addAttribute("user", user); //truyền qua view
-        return "admin/user/show"; // Tạo view mới để hiển thị chi tiết user
+        return "admin/user/show"; // Trả về trang show.jsp
+    }
+
+    //Update user
+    @GetMapping("/admin/user/update/{id}")
+    public String getUserUpdate(Model model, @PathVariable long id){
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "/admin/user/update"; //Trả về trang update.jsp
     }
 
     @RequestMapping("/admin/user/create")

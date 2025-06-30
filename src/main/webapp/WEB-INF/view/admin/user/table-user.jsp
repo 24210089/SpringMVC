@@ -44,7 +44,7 @@ uri="http://www.springframework.org/tags/form" prefix="form"%>
                       >View</a
                     >
                     <a
-                      href="/admin/user/edit/${user.id}"
+                      href="/admin/user/update/${user.id}"
                       class="btn btn-warning"
                       >Update</a
                     >
