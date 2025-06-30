@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 import com.example.demo.domain.User;
@@ -46,12 +47,28 @@ public class UserController {
     }
 
     //Update user
-    @GetMapping("/admin/user/update/{id}")
+    @GetMapping("/admin/user/update/{id}") //Lấy data từ sql lên view
     public String getUserUpdate(Model model, @PathVariable long id){
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
         return "/admin/user/update"; //Trả về trang update.jsp
     }
+
+    @PostMapping("/admin/user/update") // đẩy data từ view xuống sql, link giống với thuộc tính action trong update.jsp
+    public String postUserUpdate(Model model,@ModelAttribute("user") User hoidanit){
+        User user = this.userService.getUserById(hoidanit.getId());
+        if(user!=null){
+            user.setAddress(hoidanit.getAddress());
+            user.setFullName(hoidanit.getFullName());
+            user.setPhone(hoidanit.getPhone());
+            this.userService.handleSaveUser(hoidanit); //Lưu vào database
+        }
+        return "redirect:/admin/user/"+hoidanit.getId();
+    }
+
+
+
+    //Create New User
 
     @RequestMapping("/admin/user/create")
     public String getUserPage(Model model) {

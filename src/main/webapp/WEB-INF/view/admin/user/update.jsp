@@ -19,64 +19,63 @@ uri="http://www.springframework.org/tags/form"%>
       <div class="row justify-content-center">
         <div class="col-md-6">
           <h3 class="text-center mb-4">UPDATE USER</h3>
-          <form action="/admin/user/update" method="post">
-            <div class="mb-3">
+          <form:form
+            action="/admin/user/update"
+            method="post"
+            modelAttribute="user"
+          >
+            <div class="mb-3" hidden>
               <label for="id" class="form-label">ID</label>
-              <input
-                type="text"
+              <form:input
+                type="hidden"
                 class="form-control"
                 id="id"
-                name="id"
-                value="${user.id}"
-                readonly
+                path="id"
+                readonly="true"
               />
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input
+              <form:input
                 type="email"
                 class="form-control"
                 id="email"
-                name="email"
-                value="${user.email}"
+                path="email"
+                readonly="true"
               />
             </div>
             <div class="mb-3">
               <label for="fullName" class="form-label">Full Name</label>
-              <input
+              <form:input
                 type="text"
                 class="form-control"
                 id="fullName"
-                name="fullName"
-                value="${user.fullName}"
+                path="fullName"
               />
             </div>
             <div class="mb-3">
               <label for="address" class="form-label">Address</label>
-              <textarea
+              <form:textarea
                 class="form-control"
-                name="address"
                 id="address"
+                path="address"
                 rows="3"
-              >
-${user.address}</textarea
-              >
+              />
             </div>
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
-              <input
+              <form:input
                 type="tel"
                 class="form-control"
-                name="phone"
                 id="phone"
-                value="${user.phone}"
+                path="phone"
               />
             </div>
             <div class="d-flex justify-content-center gap-3">
               <a href="/admin/user" class="btn btn-secondary">Cancel</a>
               <button type="submit" class="btn btn-primary">Update</button>
             </div>
-          </form>
+          </form:form>
         </div>
       </div>
     </div>
