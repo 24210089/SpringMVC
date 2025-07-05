@@ -14,12 +14,10 @@ import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
 public class UserController {
     private final UserService userService;
     
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,7 +26,6 @@ public class UserController {
     public String getHomePage(Model model){
         String message = userService.handleHello();
         model.addAttribute("message", message);
-        
         return "hello";
     }
     
@@ -41,45 +38,46 @@ public class UserController {
 
     @GetMapping("/admin/user/{id}")
     public String getUserView(Model model, @PathVariable long id) {
-        User user = this.userService.getUserById(id); // Lấy từ database
-        model.addAttribute("user", user); //truyền qua view
-        return "admin/user/show"; // Trả về trang show.jsp
+        User user = this.userService.getUserById(id);
+        model.addAttribute("user", user);
+        return "admin/user/show";
     }
 
-    //Update user
-    @GetMapping("/admin/user/update/{id}") //Lấy data từ sql lên view
+    // Update user
+    @GetMapping("/admin/user/update/{id}")
     public String getUserUpdate(Model model, @PathVariable long id){
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
-        return "/admin/user/update"; //Trả về trang update.jsp
+        return "admin/user/update"; // ✅ Bỏ "/" đầu
     }
 
-    @PostMapping("/admin/user/update") // đẩy data từ view xuống sql, link giống với thuộc tính action trong update.jsp
-    public String postUserUpdate(Model model,@ModelAttribute("user") User hoidanit){
+    @PostMapping("/admin/user/update")
+    public String postUserUpdate(Model model, @ModelAttribute("user") User hoidanit){
         User user = this.userService.getUserById(hoidanit.getId());
-        if(user!=null){
+        if(user != null){
             user.setAddress(hoidanit.getAddress());
             user.setFullName(hoidanit.getFullName());
             user.setPhone(hoidanit.getPhone());
-            this.userService.handleSaveUser(user); //Lưu vào database
+            this.userService.handleSaveUser(user);
         }
-        return "redirect:/admin/user/"+hoidanit.getId();
+        return "redirect:/admin/user/" + hoidanit.getId();
     }
 
     // Delete user
     @GetMapping("/admin/user/delete/{id}")
-    public String getUserDelete(Model model,@PathVariable long id){
+    public String getUserDelete(Model model, @PathVariable long id){
         User deleteUser = this.userService.getUserById(id);
         model.addAttribute("deleteUser", deleteUser);
-        return "/admin/user/delete";
+        return "admin/user/delete"; // ✅ Bỏ "/" đầu
     }
 
     @PostMapping("/admin/user/delete")
-    public String postUserDelete(Model model,@ModelAttribute("deleteUser") User dUser){
-    this.userService.deleteUserById(dUser.getId());
-    return "redirect:/admin/user";
+    public String postUserDelete(@ModelAttribute("deleteUser") User dUser){ // ✅ Bỏ Model không cần thiết
+        if(dUser != null && dUser.getId() != 0) {
+            this.userService.deleteUserById(dUser.getId());
+        }
+        return "redirect:/admin/user";
     }
-
 
     @RequestMapping("/admin/user/create")
     public String getUserPage(Model model) {
@@ -87,11 +85,9 @@ public class UserController {
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method=RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit ) {
+    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
         this.userService.handleSaveUser(hoidanit);
         return "redirect:/admin/user";
     }
-    
-    
 }

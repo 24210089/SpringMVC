@@ -9,11 +9,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "products")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id; // ✅ ĐÚNG - long có thể auto-increment
+    private long id; // ✅ Phải là long, không phải String
 
     private String name;
     private double price;
