@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.admin;
 
 import java.util.List;
 
@@ -33,14 +33,14 @@ public class UserController {
     public String userTable(Model model) {
         List<User> userList = this.userService.getAllUsers();
         model.addAttribute("users", userList);
-        return "admin/user/table-user";
+        return "admin/user/show";
     }
 
     @GetMapping("/admin/user/{id}")
     public String getUserView(Model model, @PathVariable long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("user", user);
-        return "admin/user/show";
+        return "admin/user/detail";
     }
 
     // Update user
