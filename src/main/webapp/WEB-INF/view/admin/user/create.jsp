@@ -51,41 +51,54 @@ uri="http://www.springframework.org/tags/form"%>
                         method="post"
                         modelAttribute="newUser"
                       >
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email</label>
-                          <form:input
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            path="email"
-                            required="true"
-                          />
+                        <div class="row g-3 my-3">
+                          <div class="col">
+                            <label for="email" class="form-label">Email</label>
+                            <form:input
+                              type="email"
+                              class="form-control"
+                              id="email"
+                              path="email"
+                              required="true"
+                            />
+                          </div>
+                          <div class="col">
+                            <label for="password" class="form-label"
+                              >Password</label
+                            >
+                            <form:input
+                              type="password"
+                              class="form-control"
+                              id="password"
+                              path="password"
+                              required="true"
+                            />
+                          </div>
                         </div>
-                        <div class="mb-3">
-                          <label for="password" class="form-label"
-                            >Password</label
-                          >
-                          <form:input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            path="password"
-                            required="true"
-                          />
+                        <div class="row g-3">
+                          <div class="col">
+                            <label for="fullName" class="form-label"
+                              >Full Name</label
+                            >
+                            <form:input
+                              type="text"
+                              class="form-control"
+                              id="fullName"
+                              path="fullName"
+                              required="true"
+                            />
+                          </div>
+                          <div class="col">
+                            <label for="phone" class="form-label">Phone</label>
+                            <form:input
+                              type="tel"
+                              class="form-control"
+                              id="phone"
+                              path="phone"
+                            />
+                          </div>
                         </div>
-                        <div class="mb-3">
-                          <label for="fullName" class="form-label"
-                            >Full Name</label
-                          >
-                          <form:input
-                            type="text"
-                            class="form-control"
-                            id="fullName"
-                            path="fullName"
-                            required="true"
-                          />
-                        </div>
-                        <div class="mb-3">
+                        <div class="mb-3 my-3">
                           <label for="address" class="form-label"
                             >Address</label
                           >
@@ -96,18 +109,37 @@ uri="http://www.springframework.org/tags/form"%>
                             rows="3"
                           />
                         </div>
-                        <div class="mb-3">
-                          <label for="phone" class="form-label">Phone</label>
-                          <form:input
-                            type="tel"
-                            class="form-control"
-                            id="phone"
-                            path="phone"
-                          />
+                        <div class="row g-3">
+                          <div class="col">
+                            <label for="role" class="form-label"> Role </label>
+                            <form:select
+                              class="form-select form-control"
+                              id="role"
+                              path="role"
+                              required="true"
+                            >
+                              <option value="">-- Chọn --</option>
+                              <option value="admin">Admin</option>
+                              <option value="client">Client</option>
+                            </form:select>
+                          </div>
+                          <div class="col">
+                            <label for="avatar" class="form-label"
+                              >Avatar</label
+                            >
+                            <form:input
+                              type="file"
+                              class="form-control"
+                              id="avatar"
+                              name="avatar"
+                              path="avatar"
+                              accept="image/*"
+                            />
+                          </div>
                         </div>
-                        <div class="d-grid">
+                        <div class="d-flex justify-content-start my-3">
                           <button type="submit" class="btn btn-primary">
-                            Create User
+                            Create
                           </button>
                         </div>
                       </form:form>

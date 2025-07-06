@@ -34,6 +34,14 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
