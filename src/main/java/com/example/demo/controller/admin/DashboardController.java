@@ -11,4 +11,14 @@ public class DashboardController {
         return "admin/dashboard/show";
     }
 
+    @GetMapping("/admin/order")
+    public String getOrderPage(){
+        return "/admin/order/show";
+    }
+
+    @GetMapping("/admin/product")
+    public String getProductPage(){
+        return "/admin/product/show";
+    }
+
 }
