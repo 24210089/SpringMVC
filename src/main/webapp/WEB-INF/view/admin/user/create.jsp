@@ -20,6 +20,17 @@ uri="http://www.springframework.org/tags/form"%>
       rel="stylesheet"
     />
     <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        const avatarFile = $("#avatarFile");
+        avatarFile.change(function (e) {
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+          $("#avatarPreview").attr("src", imgURL);
+          $("#avatarPreview").css({ display: "block" });
+        });
+      });
+    </script>
     <script
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
@@ -130,12 +141,18 @@ uri="http://www.springframework.org/tags/form"%>
                             <form:input
                               type="file"
                               class="form-control"
-                              id="avatar"
-                              name="avatar"
+                              id="avatarFile"
                               path="avatar"
                               accept="image/*"
                             />
                           </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                          <img
+                            style="max-height: 250px; display: none"
+                            alt="avatar preview"
+                            id="avatarPreview"
+                          />
                         </div>
                         <div class="d-flex justify-content-start my-3">
                           <button type="submit" class="btn btn-primary">
