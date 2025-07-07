@@ -29,7 +29,7 @@ public class User {
     private String phone;
     private String avatar;
     // user - order: 1-N
-    //roleId
+    // roleId
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
@@ -45,6 +45,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Order> orders;
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public String getAvatar() {
         return avatar;
@@ -107,6 +114,5 @@ public class User {
         return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
                 + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
-
 
 }

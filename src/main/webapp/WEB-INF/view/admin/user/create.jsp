@@ -61,6 +61,7 @@ uri="http://www.springframework.org/tags/form"%>
                         action="/admin/user/create"
                         method="post"
                         modelAttribute="newUser"
+                        enctype="multipart/form-data"
                       >
                         <div class="row g-3 my-3">
                           <div class="col">
@@ -126,23 +127,22 @@ uri="http://www.springframework.org/tags/form"%>
                             <form:select
                               class="form-select form-control"
                               id="role"
-                              path="role"
+                              path="role.name"
                               required="true"
                             >
-                              <option value="">-- Chọn --</option>
-                              <option value="admin">Admin</option>
-                              <option value="client">Client</option>
+                              <form:option value="admin">Admin</form:option>
+                              <form:option value="client">Client</form:option>
                             </form:select>
                           </div>
                           <div class="col">
-                            <label for="avatar" class="form-label"
+                            <label for="avatarFile" class="form-label"
                               >Avatar</label
                             >
-                            <form:input
+                            <input
                               type="file"
                               class="form-control"
                               id="avatarFile"
-                              path="avatar"
+                              name="hoidanitFile"
                               accept="image/*"
                             />
                           </div>
