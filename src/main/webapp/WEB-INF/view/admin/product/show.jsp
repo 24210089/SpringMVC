@@ -35,7 +35,46 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
               <li class="breadcrumb-item active">Product</li>
             </ol>
-            product
+            <div class="container-fluid">
+              <div class="row">
+                <div
+                  class="col-12 d-flex justify-content-between align-items-center"
+                >
+                  <h3>Table products</h3>
+                  <a href="/admin/product/create" class="btn btn-primary"
+                    >Create a product</a
+                  >
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                      <thead class="table">
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Price</th>
+                          <th>Factory</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>1</th>
+                          <td>Táo</td>
+                          <td>12000</td>
+                          <td>Thien Ban</td>
+                          <td>
+                            <a href="" class="btn btn-success">View</a>
+                            <a href="" class="btn btn-warning">Update</a>
+                            <a href="" class="btn btn-danger">Delete</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
         <jsp:include page="../layout/footer.jsp" />

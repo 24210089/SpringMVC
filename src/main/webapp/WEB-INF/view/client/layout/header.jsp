@@ -15,7 +15,7 @@ uri="http://www.springframework.org/tags/form"%>
 <div class="container-fluid fixed-top">
   <div class="container px-0">
     <nav class="navbar navbar-light bg-white navbar-expand-xl">
-      <a href="index.html" class="navbar-brand"
+      <a href="/" class="navbar-brand"
         ><h1 class="text-primary display-6">Fruitables</h1></a
       >
       <button
