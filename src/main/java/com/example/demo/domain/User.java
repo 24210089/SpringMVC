@@ -11,6 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -19,13 +22,21 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Email(message = "Email không đúng định dạng")
+    @NotNull(message = "Email không được để trống")
+    @Size(max = 50, message = "Email phải nhỏ hơn 50 ký tự")
     private String email;
+
+    @NotNull(message = "Điền password")
+    @Size(min = 8, message = "Số ký tự trong khoảng 8-16")
     private String password;
 
     @Column(name = "full_name")
     private String fullName;
 
     private String address;
+
     private String phone;
     private String avatar;
     // user - order: 1-N

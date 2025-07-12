@@ -23,6 +23,25 @@ uri="http://www.springframework.org/tags/form"%>
       src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    Sau đó, thêm đoạn mã script sau để xử lý logic.
+    <script>
+      $(document).ready(() => {
+        // 1. Lắng nghe sự kiện 'change' trên thẻ input file
+        $("#avatarFile").change(function (e) {
+          // 2. Lấy file người dùng vừa chọn và tạo một URL tạm thời
+          const imgURL = URL.createObjectURL(e.target.files[0]);
+
+          // 3. Gán URL tạm thời vào thuộc tính 'src' của thẻ img
+          $("#avatarPreview").attr("src", imgURL);
+
+          // 4. Thay đổi CSS để hiển thị thẻ img lên
+          $("#avatarPreview").css({
+            display: "block",
+          });
+        });
+      });
+    </script>
   </head>
   <body class="sb-nav-fixed">
     <jsp:include page="../layout/header.jsp" />
@@ -143,6 +162,13 @@ uri="http://www.springframework.org/tags/form"%>
                         accept=".png, .jpg, .jpeg"
                         name="hoidanitFile"
                       />
+                      <div class="col-12 mb-3">
+                        <img
+                            style="max-height: 250px; display: none"
+                            alt="Xem trước avatar"
+                            id="avatarPreview"
+                        />
+                    
                     </div>
                     <div class="col-12 mb-3"></div>
                     <div class="col-12 mb-5">
