@@ -12,7 +12,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -23,7 +26,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Email(message = "Email không đúng định dạng")
+    @Email(message = "Email không đúng định dạng", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     @NotNull(message = "Email không được để trống")
     @Size(max = 50, message = "Email phải nhỏ hơn 50 ký tự")
     private String email;
@@ -33,10 +36,13 @@ public class User {
     private String password;
 
     @Column(name = "full_name")
+    @NotEmpty(message = "Điền họ và tên")
+    @Size(max = 50)
     private String fullName;
 
     private String address;
 
+    @Pattern(regexp = "^0\\d{9}$", message = "Số điện thoại phải có 10 số và bắt đầu bằng số 0")
     private String phone;
     private String avatar;
     // user - order: 1-N

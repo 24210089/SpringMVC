@@ -93,14 +93,24 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User hoidanit,
-            BindingResult bindingResult,
+            BindingResult newUserbindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
 
         // Validate
-        List<FieldError> errors = bindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
+        if (newUserbindingResult.hasErrors()) {
+            // Lấy danh sách tất cả các lỗi
+            List<FieldError> errors = newUserbindingResult.getFieldErrors();
+
+            // In ra console để debug
+            for (FieldError error : errors) {
+                System.out.println(
+                        error.getField() + " - " + error.getDefaultMessage());
+            }
+
+            // TODO: Trả về view với thông báo lỗi để người dùng thấy
+            return "/admin/user/create"; // Ví dụ: trả về lại trang tạo user
         }
+
         //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(hoidanit.getPassword());

@@ -5,20 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashboardController {
-    
+
     @GetMapping("/admin")
-    public String getDashboard(){
+    public String getDashboard() {
         return "admin/dashboard/show";
     }
 
     @GetMapping("/admin/order")
-    public String getOrderPage(){
+    public String getOrderPage() {
         return "/admin/order/show";
-    }
-
-    @GetMapping("/admin/product")
-    public String getProductPage(){
-        return "/admin/product/show";
     }
 
 }
