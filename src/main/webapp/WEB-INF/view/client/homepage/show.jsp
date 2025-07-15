@@ -69,32 +69,45 @@
                       <div class="col-lg-12">
                         <div class="row g-4">
                           <c:forEach var="product" items="${products}">
+
                             <div class="col-md-6 col-lg-4 col-xl-3">
-                              <div class="rounded position-relative fruite-item">
-                                <div class="fruite-img">
-                                  <img src="/images/product/${product.image}" class="img-fluid w-100 rounded-top"
-                                    alt="" />
-                                </div>
-                                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
-                                  style="top: 10px; left: 10px">
-                                  Fruits
-                                </div>
-                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                  <h4>${product.name}</h4>
-                                  <p>
-                                    ${product.shortDesc}
-                                  </p>
-                                  <div class="d-flex justify-content-between flex-lg-wrap">
-                                    <p class="text-dark fs-5 fw-bold mb-0">
-                                      $${product.price} / kg
+                              <a href="/product/${product.id}">
+                                <div class="rounded position-relative fruite-item">
+                                  <div class="fruite-img">
+                                    <img src="/images/product/${product.image}" class="img-fluid w-100 rounded-top"
+                                      alt="${product.name}" style="height: 180px; object-fit: cover;" />
+                                  </div>
+                                  <div class="text-white bg-secondary px-2 py-1 rounded position-absolute"
+                                    style="top: 8px; left: 8px; font-size: 0.75rem;">
+                                    ${product.factory}
+                                  </div>
+                                  <div class="p-3 border border-secondary border-top-0 rounded-bottom">
+                                    <h4
+                                      style="height: 2.2em; overflow: hidden; line-height: 1.1em; margin-bottom: 0.75rem;">
+                                      ${product.name}
+                                    </h4>
+                                    <p
+                                      style="height: 2.4em; overflow: hidden; font-size: 0.85rem; line-height: 1.2em; margin-bottom: 1rem;">
+                                      ${product.shortDesc}
                                     </p>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                        class="fa fa-shopping-bag me-2 text-primary"></i>
-                                      Add to cart</a>
+                                    <div class="d-flex justify-content-between flex-lg-wrap" style="gap: 0.5rem;">
+                                      <p class="text-dark fs-6 fw-bold mb-0">
+                                        <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="₫"
+                                          groupingUsed="true" />
+                                      </p>
+                                      <a href="#" class="btn border border-secondary rounded-pill px-2 text-primary"
+                                        style="font-size: 0.8rem; padding-top: 0.25rem; padding-bottom: 0.25rem;">
+                                        <i class="fa fa-shopping-bag me-1 text-primary"></i>
+                                        Add to cart
+                                      </a>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
+                              </a>
+
                             </div>
+
+
                           </c:forEach>
                         </div>
                       </div>
