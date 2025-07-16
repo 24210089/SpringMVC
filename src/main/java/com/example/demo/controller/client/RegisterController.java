@@ -40,21 +40,21 @@ public class RegisterController {
         User user = this.userService.registerDTOtoUser(registerDTO);
         // Kiểm tra nếu có lỗi validation
         if (bindingResult.hasErrors()) {
-            // Lấy danh sách tất cả các lỗi
-            List<FieldError> errors = bindingResult.getFieldErrors();
+            return "client/reg/RegisterForm";
+        }
 
-            // In ra console để debug
-            for (FieldError error : errors) {
-                System.out.println(
-                        error.getField() + " - " + error.getDefaultMessage());
-            }
+        if (this.userService.checkEmailExist(user.getEmail())) {
+            bindingResult.rejectValue("email", "error.email", "Email đã tồn tại");
+            return "client/reg/RegisterForm";
+        }
 
-            // TODO: Trả về view với thông báo lỗi để người dùng thấy
+        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Mật khẩu xác nhận không khớp");
             return "client/reg/RegisterForm";
         }
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
-
         user.setPassword(hashPassword);
+
         user.setRole(this.userService.getRoleByName("USER"));
 
         this.userService.handleSaveUser(user);

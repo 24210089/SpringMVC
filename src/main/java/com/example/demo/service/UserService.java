@@ -56,4 +56,9 @@ public class UserService {
         user.setPassword(registerDTO.getPassword());
         return user;
     }
+
+    // Kiểm tra email đã tồn tại hay chưa
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
 }

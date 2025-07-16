@@ -6,14 +6,19 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.domain.User;
 import java.util.List;
 
-
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>  {
+public interface UserRepository extends JpaRepository<User, Long> {
     @Override
     User save(User hoidanit);
+
     List<User> findByEmail(String email);
+
     List<User> findAll();
+
     User findById(long id);
+
     void deleteById(long id);
-    
+
+    boolean existsByEmail(String email);
+
 }
