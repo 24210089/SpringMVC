@@ -29,13 +29,13 @@
                                             <div class="card-body">
                                                 <form:form action="/login" method="POST" modelAttribute="userLogin">
                                                     <div class="form-floating mb-3">
-                                                        <input class="form-control" id="inputEmail" type="email"
+                                                        <form:input class="form-control" id="inputEmail" type="email"
                                                             placeholder="name@example.com" path="email" />
-                                                        <label for="inputEmail">Email address</label>
+                                                        <label for="inputEmail">Email</label>
                                                     </div>
                                                     <div class="form-floating mb-3">
-                                                        <input class="form-control" id="inputPassword" type="password"
-                                                            placeholder="Password" path="password" />
+                                                        <form:input class="form-control" id="inputPassword"
+                                                            type="password" placeholder="Password" path="password" />
                                                         <label for="inputPassword">Password</label>
                                                     </div>
                                                     <div class="form-check mb-3">
@@ -48,7 +48,7 @@
                                                     <div
                                                         class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                         <a class="small" href="password.html">Forgot Password?</a>
-                                                        <a class="btn btn-primary" href="index.html">Login</a>
+                                                        <button class="btn btn-primary" type="submit">Login</button>
                                                     </div>
                                                 </form:form>
                                             </div>
