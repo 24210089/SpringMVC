@@ -24,4 +24,9 @@ public class HomePageController {
         return "client/homepage/show";
     }
 
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "client/reg/403";
+    }
+
 }

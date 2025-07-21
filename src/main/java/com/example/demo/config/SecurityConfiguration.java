@@ -55,7 +55,8 @@ public class SecurityConfiguration {
                                                                 DispatcherType.INCLUDE)
                                                 .permitAll()
 
-                                                .requestMatchers("/", "/login", "/client/**", "/css/**", "/product/**",
+                                                .requestMatchers("/", "/login", "/client/**", "/css/**",
+                                                                "/register", "/product/**",
                                                                 "/js/**",
                                                                 "/images/**")
                                                 .permitAll()
@@ -67,7 +68,11 @@ public class SecurityConfiguration {
                                                 .loginPage("/login")
                                                 .failureUrl("/login?error")
                                                 .successHandler(customSuccessHandler())
-                                                .permitAll());
+                                                .permitAll())
+                                .exceptionHandling(exceptions -> exceptions
+                                                .accessDeniedPage("/403") // Chuyển hướng đến URL /403 khi bị từ chối
+                                                                          // truy cập
+                                );
                 return http.build();
         }
 }
