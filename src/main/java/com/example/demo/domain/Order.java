@@ -25,7 +25,7 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order")
-    List <OrderDetail> orderDetails;
+    List<OrderDetail> orderDetails;
 
     public long getId() {
         return id;
@@ -47,12 +47,5 @@ public class Order {
     public String toString() {
         return "Order [id=" + id + ", totalPrice=" + totalPrice + "]";
     }
-    
 
-   
-
-  
-
-
-    
 }
