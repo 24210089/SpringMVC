@@ -104,7 +104,7 @@
                                   <form:select class="form-select form-control" id="role" path="role.name"
                                     required="true">
                                     <form:option value="admin">Admin</form:option>
-                                    <form:option value="client">Client</form:option>
+                                    <form:option value="user">User</form:option>
                                   </form:select>
                                 </div>
                                 <div class="col">
