@@ -8,22 +8,34 @@
           }
 
           .user-dropdown {
-            min-width: 200px;
+            min-width: 250px;
             right: 0 !important;
             left: auto !important;
             transform: none !important;
           }
 
           .user-info {
-            padding: 10px 15px;
+            padding: 15px 20px;
             border-bottom: 1px solid #dee2e6;
+            background-color: #f8f9fa;
           }
 
           .user-avatar {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid #e3e6ea;
+          }
+
+          .user-dropdown .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+          }
+
+          .user-dropdown .dropdown-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
           }
         </style>
         <!-- Spinner Start -->
@@ -69,11 +81,30 @@
                       <div class="dropdown-menu dropdown-menu-end user-dropdown bg-white shadow border">
                         <!-- Thông tin người dùng -->
                         <div class="user-info d-flex align-items-center">
-                          <img src="/images/avatar-default.jpg" alt="Avatar" class="user-avatar me-2">
+                          <c:choose>
+                            <c:when test="${not empty currentUser and not empty currentUser.avatar}">
+                              <img src="/images/avatar/${currentUser.avatar}" alt="Avatar" class="user-avatar me-2">
+                            </c:when>
+                            <c:otherwise>
+                              <img src="/images/avatar-default.jpg" alt="Avatar" class="user-avatar me-2">
+                            </c:otherwise>
+                          </c:choose>
                           <div>
                             <div class="fw-bold small">
-                              <c:out value="${pageContext.request.userPrincipal.name}" />
+                              <c:choose>
+                                <c:when test="${not empty currentUser}">
+                                  <c:out value="${currentUser.fullName}" />
+                                </c:when>
+                                <c:otherwise>
+                                  <c:out value="${pageContext.request.userPrincipal.name}" />
+                                </c:otherwise>
+                              </c:choose>
                             </div>
+                            <c:if test="${not empty currentUser}">
+                              <div class="text-muted small">
+                                <c:out value="${currentUser.email}" />
+                              </div>
+                            </c:if>
                           </div>
                         </div>
                         <!-- Menu items -->
