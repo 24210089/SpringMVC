@@ -95,11 +95,15 @@
                                         <fmt:formatNumber value="${product.price}" type="currency" currencySymbol="₫"
                                           groupingUsed="true" />
                                       </p>
-                                      <a href="#" class="btn border border-secondary rounded-pill px-2 text-primary"
-                                        style="font-size: 0.8rem; padding-top: 0.25rem; padding-bottom: 0.25rem;">
-                                        <i class="fa fa-shopping-bag me-1 text-primary"></i>
-                                        Add to cart
-                                      </a>
+                                      <form action="/add-product-to-cart/${product.id}" method="post">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        <button type="submit"
+                                          class="btn border border-secondary rounded-pill px-2 text-primary"
+                                          style="font-size: 0.8rem; padding-top: 0.25rem; padding-bottom: 0.25rem;">
+                                          <i class="fa fa-shopping-bag me-1 text-primary"></i>
+                                          Add to cart
+                                        </button>
+                                      </form>
                                     </div>
                                   </div>
                                 </div>

@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,7 +87,7 @@ public class ProductController {
 
     // Update product. 2 bước, lấy dữ liệu lên, sau đó sửa và đẩy dữ liệu vào lại
     // Database
-    // Bước 1: Lấy data từ database
+    // Bước 1: Lấy data từ database hiển thị lên view
     @GetMapping("/admin/product/update/{id}")
     public String getProductUpdate(Model model, @PathVariable Long id) {
         Product product = this.productService.getById(id);

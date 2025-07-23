@@ -45,12 +45,13 @@ public class SecurityConfiguration {
         }
 
         @Bean
-        public AuthenticationSuccessHandler customSuccessHandler() {
-                return new CustomSuccessHandler();
+        public AuthenticationSuccessHandler customSuccessHandler(UserService userService) {
+                return new CustomSuccessHandler(userService);
         }
 
         @Bean
-        SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        SecurityFilterChain filterChain(HttpSecurity http, AuthenticationSuccessHandler customSuccessHandler)
+                        throws Exception {
                 http
                                 .authorizeHttpRequests(authorize -> authorize
                                                 .dispatcherTypeMatchers(DispatcherType.FORWARD,
@@ -77,7 +78,7 @@ public class SecurityConfiguration {
                                 .formLogin(formLogin -> formLogin
                                                 .loginPage("/login")
                                                 .failureUrl("/login?error")
-                                                .successHandler(customSuccessHandler())
+                                                .successHandler(customSuccessHandler)
                                                 .permitAll())
                                 .exceptionHandling(exceptions -> exceptions
                                                 .accessDeniedPage("/403") // Chuyển hướng đến URL /403 khi bị từ chối

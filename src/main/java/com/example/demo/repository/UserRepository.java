@@ -8,12 +8,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Override
-    User save(User hoidanit);
-
     List<User> findOneByEmail(String email);
-
-    List<User> findAll();
 
     User findById(long id);
 
