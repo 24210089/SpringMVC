@@ -38,8 +38,14 @@ public class ItemController {
         HttpSession session = request.getSession(false);
         long productId = id;
         String email = (String) session.getAttribute("email");
-        this.cartService.handleAddProductToCart(email, productId);
+        this.cartService.handleAddProductToCart(email, productId, session);
         return "redirect:/";
+    }
+
+    // Trang giỏ hàng
+    @GetMapping("/cart")
+    public String getCartPage(Model model) {
+        return "client/cart/ShowCart";
     }
 
 }
